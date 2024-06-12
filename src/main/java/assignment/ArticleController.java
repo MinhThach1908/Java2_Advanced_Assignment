@@ -21,7 +21,7 @@ public class ArticleController {
 
     public void myCrawler(){
         ArticleService myArticleService = new MyArticleService();
-        ArrayList<String> myLinks = myArticleService.getLinks("https://thanhnien.vn/du-lich.htm");
+        ArrayList<String> myLinks = myArticleService.getLinks("https://tienphong.vn/kinh-te/");
         for (int i = 0; i < myLinks.size(); i++) {
             Article article = myArticleService.getArticle(myLinks.get(i));
             System.out.printf("%d - %s\n", i + 1, article.getTitle());

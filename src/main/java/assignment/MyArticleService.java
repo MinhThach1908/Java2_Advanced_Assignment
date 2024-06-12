@@ -18,7 +18,7 @@ public class MyArticleService implements ArticleService {
             Elements elements = document.getElementsByTag("a");
             for (Element element : elements) {
                 String href = element.attr("href");
-                if(href.contains("https://thanhnien.vn/") && href.contains(".html")){
+                if(href.contains("https://tienphong") && href.contains(".tpo")){
                     links.add(href);
                 }
             }
@@ -33,15 +33,16 @@ public class MyArticleService implements ArticleService {
         Document doc = null;
         try {
             doc = Jsoup.connect(url).get();
-            String title = doc.select("h1.title-detail").text();
-            String description = doc.select("p.description").text();
-            String thumb = doc.select("picture img[itemprop=contentUrl]").attr("data-src");
-            String content = doc.select("article.fck_detail p.Normal[style=text-align:right;]").text();
+            String title = doc.select("h1.article__title ").text();
+            String description = doc.select("div.article__sapo").text();
+            String content = doc.select("div.article__body p").text();
+            String thumb = doc.select("div.article__body  img").attr("data-src");
             Article article = new Article();
+            article.setBaseUrl(url);
             article.setTitle(title);
             article.setDescription(description);
-            article.setThumbnail(thumb);
             article.setContent(content);
+            article.setThumbnail(thumb);
             return article;
         } catch (IOException e) {
             System.out.println(e.getMessage());

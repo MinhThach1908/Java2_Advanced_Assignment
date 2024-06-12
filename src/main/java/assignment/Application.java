@@ -20,6 +20,7 @@ public class Application {
             System.out.println("3. Show information list");
             System.out.println("4. Exit");
             System.out.println("================================");
+            System.out.print("Please enter your choice: ");
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
